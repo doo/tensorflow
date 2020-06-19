@@ -24,6 +24,7 @@ ifeq ($(TARGET), ios)
 		-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
 		-DTF_LITE_USE_CBLAS \
 		-fembed-bitcode \
+        -fvisibility-inlines-hidden \
 		-Wno-c++11-narrowing \
 		-mno-thumb \
 		-fno-exceptions \
@@ -33,12 +34,14 @@ ifeq ($(TARGET), ios)
 		-O3
 	CFLAGS += -miphoneos-version-min=$(MIN_SDK_VERSION) \
 		-fembed-bitcode \
+		-fvisibility-inlines-hidden \
 		-mno-thumb \
 		-isysroot \
 		${IPHONEOS_SYSROOT} \
 		-arch $(TARGET_ARCH) \
 		-O3
 	LDFLAGS := -fembed-bitcode \
+		-fvisibility-inlines-hidden \
 		-miphoneos-version-min=${MIN_SDK_VERSION} \
 		-framework Accelerate \
 		-arch $(TARGET_ARCH)
